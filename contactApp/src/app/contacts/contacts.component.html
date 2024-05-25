@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ </head>
+<body>
+  <h2>Get the records of <i>Contacts</i> whose <i>Company Name</i> and <i>Mobile Number</i> are available</h2>
+ 
+<button class="button button1" (click)="loadContacts10()">Top 10 Contacts</button>
+<button class="button button2" (click)="loadContacts100()">Top 100 Contacts</button>
+
+
+<!--<ul> 
+  <li *ngFor="let contact of contacts">
+    {{ contact.FirstName }} - {{ contact.Email1 }} - {{ contact.MobilePhone }}
+  </li>
+</ul>  -->
+
+
+<table   style="width: 75%;" *ngIf="contacts.length > 0">
+  <thead>
+    <tr>
+      <th>First Name</th>
+      <th>CompanyName</th>
+      <th>Mobile Number</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr style="width: 75%;" *ngFor="let contact of contacts">
+      <td>{{ contact.FirstName }}</td>
+      <td>{{ contact.CompanyName }}</td>
+      <td>{{ contact.MobilePhone }}</td>
+    </tr>
+  </tbody>
+</table>  
+
+</body>
+</html>
