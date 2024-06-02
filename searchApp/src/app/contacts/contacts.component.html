@@ -1,12 +1,14 @@
-<div>
+<div class="container">
     <h2>Search Contacts</h2>
-    <input type="text" placeholder="Search..." [(ngModel)]="searchTerm" (input)="onSearch()" />
+    <input type="text" class="search-box" placeholder="Search..." [(ngModel)]="searchTerm" (input)="onSearch()" />
 
     <!-- Page size selection dropdown -->
-    <label for="pageSize">Results per page:</label>
-    <select id="pageSize" [(ngModel)]="pageSize" (change)="onPageSizeChange($event)">
-        <option *ngFor="let size of pageSizes" [value]="size">{{ size }}</option>
-    </select>
+    <div class="page-size-selector">
+        <label for="pageSize" class="italic-label">Results per page:</label>
+        <select id="pageSize" [(ngModel)]="pageSize" (change)="onPageSizeChange($event)">
+            <option *ngFor="let size of pageSizes" [value]="size">{{ size }}</option>
+        </select>
+    </div>
     
     <!-- Only display table if search has been performed -->
     <ng-container *ngIf="searchPerformed">
@@ -40,7 +42,8 @@
             </ng-template>
         </p-table>
         <div *ngIf="totalRecords === 0">No results found</div>
-      <!----  <div>Total Results: {{ totalRecords }}</div> -->
+        
+    <!----  <div>Total Results: {{ totalRecords }}</div> -->
     <!----  <div> Showing {{(currentPage-1)*pageSize+1}} to {{ currentPage*pageSize }} of {{ totalRecords }} records</div> -->
  <div *ngIf="searchPerformed" class="results-status">
     Showing {{ startRecord }} to {{ endRecord }} of {{ totalRecords }} records
