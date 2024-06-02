@@ -1,0 +1,42 @@
+<div>
+    <h2>Search Contacts</h2>
+    <input type="text" placeholder="Search..." [(ngModel)]="searchTerm" (input)="onSearch()" />
+    <!-- Only display table if search has been performed -->
+    <ng-container *ngIf="searchPerformed">
+        <p-table [value]="contacts" [paginator]="true" [rows]="pageSize" [totalRecords]="totalRecords"
+                 [lazy]="true" (onLazyLoad)="loadContacts($event)">
+            <ng-template pTemplate="header">
+                <tr>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Email</th>
+                    <th>Mobile Phone</th>
+                    <th>Job Title</th>
+                    <th>City</th>
+                    <th>State</th>
+                    <th>Country</th>
+                    <th>Summary</th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-contact>
+                <tr>
+                    <td>{{ contact.FirstName }}</td>
+                    <td>{{ contact.LastName }}</td>
+                    <td>{{ contact.Email1 }}</td>
+                    <td>{{ contact.MobilePhone }}</td>
+                    <td>{{ contact.JobTitle }}</td>
+                    <td>{{ contact.City }}</td>
+                    <td>{{ contact.State }}</td>
+                    <td>{{ contact.Country }}</td>
+                    <td>{{ contact.Summary1 }}</td>
+                </tr>
+            </ng-template>
+        </p-table>
+        <div *ngIf="totalRecords === 0">No results found</div>
+      <!----  <div>Total Results: {{ totalRecords }}</div> -->
+    <!----  <div> Showing {{(currentPage-1)*pageSize+1}} to {{ currentPage*pageSize }} of {{ totalRecords }} records</div> -->
+ <div *ngIf="searchPerformed" class="results-status">
+    Showing {{ startRecord }} to {{ endRecord }} of {{ totalRecords }} records
+ </div>
+    </ng-container>
+</div>
