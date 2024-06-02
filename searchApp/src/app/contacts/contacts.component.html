@@ -1,6 +1,13 @@
 <div>
     <h2>Search Contacts</h2>
     <input type="text" placeholder="Search..." [(ngModel)]="searchTerm" (input)="onSearch()" />
+
+    <!-- Page size selection dropdown -->
+    <label for="pageSize">Results per page:</label>
+    <select id="pageSize" [(ngModel)]="pageSize" (change)="onPageSizeChange($event)">
+        <option *ngFor="let size of pageSizes" [value]="size">{{ size }}</option>
+    </select>
+    
     <!-- Only display table if search has been performed -->
     <ng-container *ngIf="searchPerformed">
         <p-table [value]="contacts" [paginator]="true" [rows]="pageSize" [totalRecords]="totalRecords"

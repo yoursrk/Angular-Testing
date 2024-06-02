@@ -11,9 +11,10 @@ export class ContactsComponent implements OnInit {
     contacts: any[] = [];
     totalRecords: number = 0;
     searchTerm: string = '';
-    pageSize: number = 50;
+    pageSize: number = 10;
     currentPage: number = 1;
     searchPerformed: boolean = false; // This is for not to show any records prior to search
+    pageSizes: number[] = [10, 30, 50, 75, 100]; // Available page sizes
     
     constructor(private contactService: ContactService) { }
 
@@ -34,6 +35,12 @@ export class ContactsComponent implements OnInit {
             this.totalRecords = response.total;
         });
     }
+
+    onPageSizeChange(event: any) {
+      this.pageSize = event.target.value;
+      this.onSearch(); // Reload contacts with the new page size
+    }
+
     // Count status of Search results
     // Calculate the start record number
   get startRecord(): number {
