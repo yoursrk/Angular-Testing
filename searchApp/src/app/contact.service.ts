@@ -11,7 +11,7 @@ interface Contact {
     City: string;
     State: string;
     Country: string;
-    Summary: string;
+    Summary1: string;
 }
 
 interface ContactResponse {
